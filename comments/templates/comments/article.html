@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row" align="center">
+<h4><a href="/articles/">Вернуться к списку статей</a></h4>
+ 
+          <div class="card">
+            
+              <span class="card-title"><h1>{{ args.article_title }}</h1></span>
+          
+            <div class="card-content">
+              <p>{{ args.article_text }}</p>
+            </div>
+			    <p>{{ args.timestamp }}</p>
+ 
+ 
+      </div>
+
+
+<h5>Комментарии:</h5>
+
+{% for comments in comment %}
+<div class="card">
+    <p><b>{{ comments.comments_author }}</b> пишет:</p>
+    <p><i>{{ comments.comments_text }}</i></p>
+</div>
+{% endfor %}
+
+<h5>Оставить комментарий:<h5>
+<div class="col sm4"></div>
+<form method='POST' action='/article/addcomment/{{ args.id }}/' enctype='multipart/form-data' class="col-sm-6 col-sm-offset-3" align='center'>
+{% csrf_token %}
+{{ form }}
+
+  <button class="btn waves-effect waves-light" type="submit" name="action">Опубликовать комментарий
+    <i class="material-icons right">send</i>
+  </button>
+
+</form>
+<div class="col sm4" align="center">
+</div>
+</div>
+{% endblock content %}
