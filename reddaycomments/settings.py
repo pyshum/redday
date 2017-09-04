@@ -25,7 +25,7 @@ SECRET_KEY = 'ji@&m&+0efb*7my+s22=t_%0!1+4)d_q5dt%&4a@+cwyqr-67d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['shum911.ddns.net', '127.0.0.1']
+ALLOWED_HOSTS = ['shum911.ddns.net', '127.0.0.1', '*']
 
 
 # Application definition

@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import auth
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render, redirect
@@ -13,8 +14,22 @@ from .models import Article, Comments
 
 def articles(request):
 	all_articles = Article.objects.all().order_by("-timestamp")
+	paginator = Paginator(all_articles, 2)
+
+	page = request.GET.get('page')
+	#pagination
+	try:
+		articles = paginator.page(page)
+	except PageNotAnInteger:
+		#If page is not an integer, deliver first page.
+		articles = paginator.page(1)
+	except EmptyPage:
+		#If page is out of range, deliver last page of result
+		articles = paginator.page(paginator.num_pages)
+
 	context = {
 	'all_articles': all_articles,
+	'articles': articles,
 	}
 	return render(request, 'comments/articles.html', context)
 
