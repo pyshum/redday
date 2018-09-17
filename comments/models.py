@@ -8,15 +8,22 @@ from django.utils import timezone
 
 # Create your models here.
 
+
 class Article(models.Model):
-	article_title = models.CharField(max_length=200)
-	article_text = models.TextField()
-	article_date = models.DateTimeField()
-	article_likes = models.IntegerField(default=0)
-	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False, null=True)
+    article_title = models.CharField(max_length=200)
+    article_text = models.TextField()
+    article_date = models.DateTimeField()
+    article_likes = models.IntegerField(default=0)
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False, null=True)
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return self.article_title
 
 
 class Comments(models.Model):
-	comments_text = models.TextField()
-	comments_article = models.ForeignKey(Article)
-	comments_author = models.CharField(max_length=120)
+    comments_text = models.TextField()
+    comments_article = models.ForeignKey(Article)
+    comments_author = models.CharField(max_length=120)

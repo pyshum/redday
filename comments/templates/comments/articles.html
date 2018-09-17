@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="container">
 {% for article in articles %}
-<div class="divider"></div>
 <div class="container">
-  <div class="section" align="center">
-  
-    <span class="card-title"><h4><a href="/article/{{ article.id }}/">{{ article.article_title }}</a></h4></span>
-    <p>{{ article.article_text|linebreaks|truncatechars:120 }}</p>
-    <p>{{ article.timestamp }}</p>
-    
-  
-</div>
+    <div class="divider"></div>
+        <div class="row" align="center">
+
+        <span class="card-title"><h4><a href="/article/{{ article.id }}/">{{ article.article_title }}</a></h4></span>
+        <p>{{ article.article_text|linebreaks|truncatechars:120 }}</p>
+        <p>{{ article.timestamp }}</p>
+
+
+        </div>
 </div>
 {% endfor %}
 
-<ul class="pagination">
+<ul class="pagination" align="center">
 
     {% if articles.has_previous %}
     <li class="waves-effect"><a href="?page={{ articles.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
@@ -40,7 +41,7 @@
 
 
 
-<div class="pagination">
+<div class="pagination" align="center">
     <span class="step-links">
         {% if articles.has_previous %}
         <a href="?page={{ articles.previous_page_number }}">previous</a>
@@ -59,4 +60,5 @@
 
 
 </div>
+    </div>
 {% endblock content %}

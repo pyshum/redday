@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="container">
 <div class="row" align="center">
 <h4><a href="/articles/">Вернуться к списку статей</a></h4>
  
@@ -26,7 +27,7 @@
 </div>
 {% endfor %}
 
-<h5>Оставить комментарий:<h5>
+<h5>Оставить комментарий:</h5>
 <div class="col sm4"></div>
 <form method='POST' action='/article/addcomment/{{ args.id }}/' enctype='multipart/form-data' class="col-sm-6 col-sm-offset-3" align='center'>
 {% csrf_token %}
@@ -40,4 +41,5 @@
 <div class="col sm4" align="center">
 </div>
 </div>
+    </div>
 {% endblock content %}
