@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #thirdpart apps
     'materializeform',
+    'tabbed_admin',
     #myapps
     'comments.apps.CommentsConfig',
     #'comments',
